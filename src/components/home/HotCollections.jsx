@@ -7,7 +7,7 @@ import Skeleton from "../UI/Skeleton.jsx";
 
 const HotCollections = () => {
   const [collection, setCollection] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loaded, setLoaded] = useState(false);
 
   const settings = {
     dots: false,
@@ -50,7 +50,10 @@ const HotCollections = () => {
       );
       console.log(data);
       setCollection(data);
-      setLoading(false)
+      setTimeout(() => {
+      setLoaded(true)
+        
+      }, 1000);
     }
     getHotCollections();
   }, []);
@@ -66,29 +69,7 @@ const HotCollections = () => {
             </div>
           </div>
           <Slider className="slider" {...settings}>
-            {loading ? new Array(4).fill(0).map((_, index) => (
-            <div  key={index}>
-              <div className="nft_coll">
-                <div className="nft_wrap">
-                  <Link to="/item-details">
-                   <Skeleton/>
-                  </Link>
-                </div>
-                <div className="nft_coll_pp">
-                  <Link to="/author">
-                    <Skeleton/>
-                  </Link>
-                  <i className="fa fa-check"></i>
-                </div>
-                <div className="nft_coll_info">
-                  <Link to="/explore">
-                    <Skeleton/>
-                  </Link>
-                  <Skeleton />
-                </div>
-              </div>
-            </div>
-          )) : 
+            {loaded ? 
             
             collection.map((collections) => (
               <div className="nft_coll-wrapper" key={collections?.id}>
@@ -117,6 +98,28 @@ const HotCollections = () => {
                       <h4>{collections?.title}</h4>
                     </Link>
                     <span>ERC-{collections?.code}</span>
+                  </div>
+                </div>
+              </div>
+            )) : new Array(4).fill(0).map((_, index) => (
+              <div  key={index}>
+                <div className="nft_coll">
+                  <div className="nft_wrap">
+                    <Link to="/item-details">
+                      <div src=''  className="lazy img-fluid skeleton skeleton__hot-collections--img" alt="" />
+                    </Link>
+                  </div>
+                  <div className="nft_coll_pp">
+                    <Link to="/author">
+                      <div className="lazy pp-coll skeleton skeleton__hot-collections--author--img" src='' alt="" />
+                    </Link>
+                    <i className="fa fa-check"></i>
+                  </div>
+                  <div className="nft_coll_info">
+                    <Link to="/explore">
+                      <h4 className="skeleton skeleton__hot-collections--title">NFT TITLE</h4>
+                    </Link>
+                    <span className="skeleton skeleton__hot-collections--code">NFT CODE</span>
                   </div>
                 </div>
               </div>

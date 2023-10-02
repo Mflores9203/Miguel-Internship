@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import axios from "axios";
+import Skeleton from "../UI/Skeleton";
 
 const TopSellers = () => {
   const url =
@@ -9,13 +10,12 @@ const TopSellers = () => {
   const [topSeller, setTopSeller] = useState([]);
   const [loaded, setLoaded] = useState(false);
 
-  
   useEffect(() => {
     async function getTop() {
       const { data } = await axios.get(url);
-console.log(data)
+      console.log(data);
       setTopSeller(data);
-      setLoaded(true)
+      setLoaded(true);
     }
     getTop();
   }, []);
@@ -32,41 +32,50 @@ console.log(data)
           </div>
           <div className="col-md-12">
             <ol className="author_list">
-              {loaded? topSeller.map((topSeller) => (
-                <li key={topSeller.id}>
-                  <div className="author_list_pp">
-                    <Link to={`/author/${topSeller.authorId}`}>
-                      <img
-                        className="lazy pp-author"
-                        src={topSeller.authorImage}
-                        alt=""
-                      />
-                      <i className="fa fa-check"></i>
-                    </Link>
-                  </div>
-                  <div className="author_list_info">
-                    <Link to="/author">{topSeller.authorName}</Link>
-                    <span>{topSeller.price} ETH</span>
-                  </div>
-                </li>
-              )):new Array(12).fill(0).map((_, index) => (
-                <li key={index}>
-                  <div className="author_list_pp">
-                    <Link to="/author">
-                      <img
-                        className="lazy pp-author"
-                        src={AuthorImage}
-                        alt=""
-                      />
-                      <i className="fa fa-check"></i>
-                    </Link>
-                  </div>
-                  <div className="author_list_info">
-                    <Link to="/author">Monica Lucas</Link>
-                    <span>2.1 ETH</span>
-                  </div>
-                </li>
-              ))} 
+              {loaded
+                ? topSeller.map((topSeller) => (
+                    <li key={topSeller.id}>
+                      <div className="author_list_pp">
+                        <Link to={`/author/${topSeller.authorId}`}>
+                          <img
+                            className="lazy pp-author"
+                            src={topSeller.authorImage}
+                            alt=""
+                          />
+                          <i className="fa fa-check"></i>
+                        </Link>
+                      </div>
+                      <div className="author_list_info">
+                        <Link to={`/author/${topSeller.authorId}`}>
+                          {topSeller.authorName}
+                        </Link>
+                        <span>{topSeller.price} ETH</span>
+                      </div>
+                    </li>
+                  ))
+                : new Array(12).fill(0).map((_, index) => (
+                    <li key={index}>
+                      <div className="author_list_pp">
+                        
+                          <Skeleton
+                            width={"50px"}
+                            height={"50px"}
+                            borderRadius={"50%"}
+                          />
+                          <i className="fa fa-check"></i>
+                        
+                      </div>
+                      <div className="author_list_info">
+                        
+                          <Skeleton width={"120px"} height={"20px"} />
+                        
+                        <span>
+                          {" "}
+                          <Skeleton width={"50px"} height={"15px"} />
+                        </span>
+                      </div>
+                    </li>
+                  ))}
             </ol>
           </div>
         </div>

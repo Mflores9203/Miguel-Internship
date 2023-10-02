@@ -49,7 +49,6 @@ const NewItems = () => {
   useEffect(() => {
     async function getNewItems() {
       const { data } = await axios.get(url);
-      console.log(data);
       setNewItem(data);
 
       setTimeout(() => {

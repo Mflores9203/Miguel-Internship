@@ -11,7 +11,7 @@ import ExpiryDate from "../UI/ExpiryDate";
 const NewItems = () => {
   const [newItem, setNewItem] = useState([]);
   const [loaded, setLoaded] = useState(false);
-
+  const url = `https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems`;
   const settings = {
     dots: false,
     infinite: true,
@@ -45,18 +45,18 @@ const NewItems = () => {
       },
     ],
   };
-  async function getNewItems() {
-    const { data } = await axios.get(
-      `https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems`
-    );
-    console.log(data);
-    setNewItem(data);
 
-    setTimeout(() => {
-      setLoaded(true);
-    }, 2000);
-  }
   useEffect(() => {
+    async function getNewItems() {
+      const { data } = await axios.get(url);
+      console.log(data);
+      setNewItem(data);
+
+      setTimeout(() => {
+        setLoaded(true);
+      }, 2000);
+    }
+
     getNewItems();
   }, []);
 
@@ -90,7 +90,7 @@ const NewItems = () => {
                           <i className="fa fa-check"></i>
                         </Link>
                       </div>
-                     {<ExpiryDate newItem={newItem}/>}
+                      <ExpiryDate newItem={newItem} />
 
                       <div className="nft__item_wrap">
                         <div className="nft__item_extra">

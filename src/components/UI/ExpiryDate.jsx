@@ -7,23 +7,32 @@ const ExpiryDate = ({ newItem }) => {
 
   useEffect(() => {
     setTimeout(() => {
-        
-        setDateExpired(dateExpired - 1);
+      setDateExpired(dateExpired - 1);
     }, 1000);
-  }, []);
+  }, [dateExpired]);
 
   function timeCountdown() {
-    if (dateRelease > 0) {
-        const seconds = dateExpired
-        const minutes = seconds /60
-        const hours = Math.floor(minutes / 60)
-        console.log(hours)
+    if (dateExpired > 0) {
+      const seconds = dateExpired;
+      const minutes = seconds / 60;
+      const hours = Math.floor(minutes / 60);
+      const secondsRemain = (seconds % 60) % 60;
+      const minutesRemain = Math.floor(minutes % 60);
+      return `${hours}h ${minutesRemain}m ${secondsRemain}s`;
     }
-    
+    if (dateExpired - Date.now() === 0) {
+      return "EXPIRED";
+    }
   }
   timeCountdown();
 
-  return <div className="de_countdown">{newItem.expiryDate}</div>;
+  return (
+    <>
+      {newItem.expiryDate ? (
+        <div className="de_countdown">{timeCountdown(dateExpired)}</div>
+      ) : null}
+    </>
+  );
 };
 
 export default ExpiryDate;

@@ -48,7 +48,6 @@ const HotCollections = () => {
       const { data } = await axios.get(
         `https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections`
       );
-      console.log(data);
       setCollection(data);
       setTimeout(() => {
       setLoaded(true)
@@ -72,12 +71,12 @@ const HotCollections = () => {
             {loaded ? 
             
             collection.map((collections) => (
-              <div className="nft_coll-wrapper" key={collections?.id}>
+              <div className="nft_coll-wrapper" key={collections.id}>
                 <div className="nft_coll">
                   <div className="nft_wrap">
                     <Link to="/item-details">
                       <img
-                        src={collections?.nftImage}
+                        src={collections.nftImage}
                         className="lazy img-fluid"
                         alt=""
                       />
@@ -87,7 +86,7 @@ const HotCollections = () => {
                     <Link to="/author">
                       <img
                         className="lazy pp-coll"
-                        src={collections?.authorImage}
+                        src={collections.authorImage}
                         alt=""
                       />
                     </Link>
@@ -95,9 +94,9 @@ const HotCollections = () => {
                   </div>
                   <div className="nft_coll_info">
                     <Link to="/explore">
-                      <h4>{collections?.title}</h4>
+                      <h4>{collections.title}</h4>
                     </Link>
-                    <span>ERC-{collections?.code}</span>
+                    <span>ERC-{collections.code}</span>
                   </div>
                 </div>
               </div>

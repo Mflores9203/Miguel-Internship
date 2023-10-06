@@ -5,6 +5,7 @@ import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
 import ExpiryDate from "../UI/ExpiryDate";
 import Skeleton from "../UI/Skeleton";
+import NewItems from "../home/NewItems";
 
 const ExploreItems = () => {
   const url =
@@ -12,6 +13,7 @@ const ExploreItems = () => {
 
   const [expItem, setExpItem] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [visibleItems, setVisibleItems] = useState([]);
 
   useEffect(() => {
     async function getExpItems() {
@@ -19,6 +21,7 @@ const ExploreItems = () => {
       console.log(data);
       setExpItem(data);
       setLoaded(true);
+      setVisibleItems(data.slice(0, 8));
     }
 
     getExpItems();
@@ -35,7 +38,7 @@ const ExploreItems = () => {
         </select>
       </div>
       {loaded
-        ? expItem.map((nft, index) => (
+        ? visibleItems.map((nft, index) => (
             <div
               key={index}
               className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
@@ -50,15 +53,27 @@ const ExploreItems = () => {
               className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
               style={{ display: "block", backgroundSize: "cover" }}
             >
-                <Skeleton width={'100%'}
-                height={'440px'}/>
+              <Skeleton width={"100%"} height={"440px"} />
             </div>
           ))}
-      <div className="col-md-12 text-center">
-        <Link to="" id="loadmore" className="btn-main lead">
+      {visibleItems.length !== 16 ? <div className="col-md-12 text-center">
+        <Link
+          to=""
+          onClick={() => {
+            if (visibleItems.length === 8) {
+              setVisibleItems(expItem.slice(0, 12));
+            } else if (visibleItems.length === 12) {
+              setVisibleItems(expItem.slice(0, 16));
+            } else {
+              setVisibleItems(visibleItems);
+            }
+          }}
+          id="loadmore"
+          className="btn-main lead"
+        >
           Load more
         </Link>
-      </div>
+      </div> : <></>}
     </>
   );
 };

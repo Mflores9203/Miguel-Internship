@@ -18,7 +18,6 @@ const ExploreItems = () => {
   useEffect(() => {
     async function getExpItems() {
       const { data } = await axios.get(url);
-      console.log(data);
       setExpItem(data);
       setLoaded(true);
       setVisibleItems(data.slice(0, 8));

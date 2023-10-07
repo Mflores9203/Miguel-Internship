@@ -27,10 +27,33 @@ const ExploreItems = () => {
     getExpItems();
   }, []);
 
+  function filterItems(event) {
+    const value = event.target.value;
+    const lowToHigh = [...expItem].sort((a, b) => a.price - b.price);
+    const highToLow = [...expItem].sort((a,b) => b.price - a.price) 
+    const likes = [...expItem].sort((a,b)=> b.likes - a.likes)
+
+    if (loaded) {
+      if ((value === "")) {
+        setVisibleItems(visibleItems.length);
+      }
+      if ((value === "price_low_to_high")) {
+        setVisibleItems(lowToHigh.slice(0, visibleItems.length));
+      }
+      if ((value === "price_high_to_low")) {
+        setVisibleItems(highToLow.slice(0, visibleItems.length));
+      }
+      if ((value === "likes_high_to_low")) {
+        setVisibleItems(likes.slice(0, visibleItems.length));
+      }
+      
+    }
+  }
+
   return (
     <>
       <div>
-        <select id="filter-items" defaultValue="">
+        <select id="filter-items" onChange={filterItems} defaultValue="">
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
@@ -56,24 +79,28 @@ const ExploreItems = () => {
               <Skeleton width={"100%"} height={"440px"} />
             </div>
           ))}
-      {visibleItems.length !== 16 ? <div className="col-md-12 text-center">
-        <Link
-          to=""
-          onClick={() => {
-            if (visibleItems.length === 8) {
-              setVisibleItems(expItem.slice(0, 12));
-            } else if (visibleItems.length === 12) {
-              setVisibleItems(expItem.slice(0, 16));
-            } else {
-              setVisibleItems(visibleItems);
-            }
-          }}
-          id="loadmore"
-          className="btn-main lead"
-        >
-          Load more
-        </Link>
-      </div> : <></>}
+      {visibleItems.length !== 16 ? (
+        <div className="col-md-12 text-center">
+          <Link
+            to=""
+            onClick={() => {
+              if (visibleItems.length === 8) {
+                setVisibleItems(expItem.slice(0, 12));
+              } else if (visibleItems.length === 12) {
+                setVisibleItems(expItem.slice(0, 16));
+              } else {
+                setVisibleItems(visibleItems);
+              }
+            }}
+            id="loadmore"
+            className="btn-main lead"
+          >
+            Load more
+          </Link>
+        </div>
+      ) : (
+        <></>
+      )}
     </>
   );
 };

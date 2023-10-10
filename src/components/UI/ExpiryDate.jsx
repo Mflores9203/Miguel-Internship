@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const ExpiryDate = ({ nft }) => {
+const ExpiryDate = ({ nft, authorId }) => {
   const [dateExpired, setDateExpired] = useState(
     Math.floor((nft.expiryDate - Date.now()) / 1000)
   );
@@ -28,9 +28,9 @@ const ExpiryDate = ({ nft }) => {
   timeCountdown();
 
   return (
-    <div className="nft__item">
+    <div key={nft.id} className="nft__item">
       <div className="author_list_pp">
-        <Link to="/author" data-bs-toggle="tooltip" data-bs-placement="top">
+        <Link to={`/author/${nft.authorId}`}data-bs-toggle="tooltip" data-bs-placement="top">
           <img className="lazy" src={nft.authorImage} alt="" />
           <i className="fa fa-check"></i>
         </Link>

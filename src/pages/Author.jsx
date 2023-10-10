@@ -66,6 +66,7 @@ const Author = () => {
                               Copy
                             </button>
                           </h4>
+
                         </div>
                       </div>
                     </div>
@@ -73,8 +74,8 @@ const Author = () => {
                       <div className="de-flex-col">
                         <div className="profile_follower">
                           {followerNumber
-                            ? `${author.followers + 1}followers`
-                            : `${author.followers}followers`}
+                            ? `${author.followers + 1} followers`
+                            : `${author.followers} followers`}
                         </div>
                         <Link
                           to="#"
@@ -101,8 +102,8 @@ const Author = () => {
             </div>
           </section>
         ) : (
-          new Array(1).fill(0).map(() => (
-            <section aria-label="section">
+          new Array(1).fill(0).map((_, index) => (
+            <section key={index} aria-label="section">
               <div className="container">
                 <div className="row">
                   <div className="col-md-12">

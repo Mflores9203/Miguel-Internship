@@ -111,7 +111,7 @@ const ItemDetails = () => {
           </section>
         ) : (
           new Array(1).fill(0).map((_, index) => (
-            <section aria-label="section" className="mt90 sm-mt-0">
+            <section key={index} aria-label="section" className="mt90 sm-mt-0">
               <div className="container">
                 <div className="row">
                   <div className="col-md-6 text-center">
@@ -128,9 +128,9 @@ const ItemDetails = () => {
 
                         <Skeleton height={"30px"} width={"80px"} />
                       </div>
-                      <p>
+                      
                         <Skeleton height={"80px"} width={"316px"} />
-                      </p>
+                      
                       <div className="d-flex flex-row">
                         <div className="mr40">
                           <h6>Owner</h6>

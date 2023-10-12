@@ -114,14 +114,11 @@ const NewItems = () => {
                           </div>
                         </div>
 
-                        <Link to="/item-details">
                           <Skeleton width={"100%"} height={"350px"} />
-                        </Link>
+                        
                       </div>
                       <div className="nft__item_info">
-                        <Link to="/item-details">
                           <Skeleton width={"180px"} height={"30px"} />
-                        </Link>
                         <Skeleton width={"100px"} height={"20px"} />
                       </div>
                     </div>

@@ -101,8 +101,8 @@ const Author = () => {
             </div>
           </section>
         ) : (
-          new Array(1).fill(0).map(() => (
-            <section aria-label="section">
+          new Array(1).fill(0).map((_, index) => (
+            <section key={index} aria-label="section">
               <div className="container">
                 <div className="row">
                   <div className="col-md-12">

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
-import ExpiryDate from "../UI/ExpiryDateNft";
+import ExpiryDateNft from "../UI/ExpiryDateNft";
 import Skeleton from "../UI/Skeleton";
 import NewItems from "../home/NewItems";
 
@@ -66,7 +66,7 @@ const ExploreItems = () => {
               className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
               style={{ display: "block", backgroundSize: "cover" }}
             >
-              <ExpiryDate nft={nft} />
+              <ExpiryDateNft nft={nft} />
             </div>
           ))
         : new Array(8).fill(0).map((_, index) => (

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
-import ExpiryDate from "../UI/ExpiryDate";
+import ExpiryDate from "../UI/ExpiryDateNft";
 import Skeleton from "../UI/Skeleton";
 import NewItems from "../home/NewItems";
 
@@ -18,7 +18,6 @@ const ExploreItems = () => {
   useEffect(() => {
     async function getExpItems() {
       const { data } = await axios.get(url);
-      console.log(data);
       setExpItem(data);
       setLoaded(true);
       setVisibleItems(data.slice(0, 8));

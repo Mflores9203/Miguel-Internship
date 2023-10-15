@@ -6,7 +6,7 @@ import axios from "axios";
 import Slider from "react-slick";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import Skeleton from "../UI/Skeleton";
-import ExpiryDate from "../UI/ExpiryDate";
+import ExpiryDateNft from "../UI/ExpiryDateNft";
 
 const NewItems = () => {
   const [newItem, setNewItem] = useState([]);
@@ -74,26 +74,20 @@ const NewItems = () => {
             {loaded
               ? newItem.map((nft, index) => (
                   <div key={index}>
-                    <ExpiryDate nft={nft}/>
+                    <ExpiryDateNft nft={nft}/>
                   </div>
                 ))
               : new Array(4).fill(0).map((_, index) => (
                   <div className="" key={index}>
                     <div className="nft__item">
                       <div className="author_list_pp">
-                        <Link
-                          to="/author"
-                          data-bs-toggle="tooltip"
-                          data-bs-placement="top"
-                          title="Creator: Monica Lucas"
-                        >
+                      
                           <Skeleton
                             width={"50px"}
                             height={"50px"}
                             border-radius={"50%"}
                           />
                           <i className="fa fa-check"></i>
-                        </Link>
                       </div>
 
                       <div className="nft__item_wrap">

@@ -94,6 +94,8 @@ const ExploreItems = () => {
             }}
             id="loadmore"
             className="btn-main lead"
+            data-aos="fade"
+            data-aos-duration="1000" 
           >
             Load more
           </Link>

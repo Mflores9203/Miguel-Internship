@@ -84,7 +84,7 @@ const HotCollections = () => {
                     </Link>
                   </div>
                   <div className="nft_coll_pp">
-                    <Link to="/author">
+                    <Link to={`/author/${collections.authorId}`}>
                       <img
                         className="lazy pp-coll"
                         src={collections.authorImage}
@@ -102,43 +102,43 @@ const HotCollections = () => {
                 </div>
               </div>
             )) : new Array(4).fill(0).map((_, index) => (
-              <div  key={index}>
+              <div key={index}>
                 <div className="nft_coll">
                   <div className="nft_wrap">
-                    <Link to="/item-details">
-                      <div src=''  className="lazy img-fluid skeleton skeleton__hot-collections--img" alt="" />
-                    </Link>
+                    <Skeleton width={"100%"} height={"200px"} />
                   </div>
                   <div className="nft_coll_pp">
-                    <Link to="/author">
-                      <div className="lazy pp-coll skeleton skeleton__hot-collections--author--img" src='' alt="" />
-                    </Link>
+                    <Skeleton
+                      width={"50px"}
+                      height={"50px"}
+                      borderRadius={"50%"}
+                    />
                     <i className="fa fa-check"></i>
                   </div>
                   <div className="nft_coll_info">
-                    <Link to="/explore">
-                      <h4 className="skeleton skeleton__hot-collections--title">NFT TITLE</h4>
-                    </Link>
-                    <span className="skeleton skeleton__hot-collections--code">NFT CODE</span>
+                    <Skeleton width={"100px"} height={"20px"} />
+                    <div>
+                      <Skeleton width={"60px"} height={"20px"} />
+                    </div>
                   </div>
                 </div>
               </div>
             ))}
-          </Slider>
-        </div>
-      </div>
-    </section>
-  );
+      </Slider>
+    </div>
+  </div>
+</section>
+);
 };
 
 export default HotCollections;
 
 function LeftArrow(props) {
-  const { onClick } = props;
-  return <ChevronLeftIcon className="arrow arrow__left" onClick={onClick} />;
+const { onClick } = props;
+return <ChevronLeftIcon className="arrow arrow__left" onClick={onClick} />;
 }
 
 function RightArrow(props) {
-  const { onClick } = props;
-  return <ChevronRightIcon className="arrow arrow__right" onClick={onClick} />;
+const { onClick } = props;
+return <ChevronRightIcon className="arrow arrow__right" onClick={onClick} />;
 }

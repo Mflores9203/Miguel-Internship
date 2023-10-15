@@ -13,7 +13,6 @@ const TopSellers = () => {
   useEffect(() => {
     async function getTop() {
       const { data } = await axios.get(url);
-      console.log(data);
       setTopSeller(data);
       setLoaded(true);
     }

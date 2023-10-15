@@ -46,7 +46,6 @@
 }
 
 .nft_coll {
-  box-sizing: border-box;
   margin-right: 8px;
   aspect-ratio: 1.25;
 }
@@ -55,7 +54,16 @@
   aspect-ratio: 1/1;
   width: 100%;
 }
-.skeleton {
+
+/* NEW ITEMS */
+
+.nft__item {
+  margin-right: 8px;
+}
+
+/* SKELETON */
+
+.skeleton-box {
   background-color: #dddbdd;
   color: #dddbdd;
   background-size: 300%;
@@ -63,7 +71,7 @@
   overflow: hidden;
 }
 
-.skeleton:after {
+.skeleton-box:after {
   -webkit-animation: shimmer 2s infinite;
   animation: shimmer 2s infinite;
   background-image: linear-gradient(
@@ -81,15 +89,6 @@
   top: 0;
   -webkit-transform: translateX(-100%);
   transform: translateX(-100%);
-}
-
-.skeleton__hot-collections--img {
-  height: 100%;
-}
-
-.skeleton__hot-collections--author--img {
-  height: 100%;
-  border-radius: 50%;
 }
 
 @keyframes shimmer {

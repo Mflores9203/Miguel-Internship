@@ -50,8 +50,7 @@ const HotCollections = () => {
       );
       setCollection(data);
       setTimeout(() => {
-      setLoaded(true)
-        
+        setLoaded(true);
       }, 1000);
     }
     getHotCollections();
@@ -75,7 +74,7 @@ const HotCollections = () => {
               <div className="nft_coll-wrapper" key={collections.id}>
                 <div className="nft_coll">
                   <div className="nft_wrap">
-                    <Link to={`/item-details/${collections.nftId}`}>
+                  <Link to={`/item-details/${collections.nftId}`}>
                       <img
                         src={collections.nftImage}
                         className="lazy img-fluid"
